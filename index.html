@@ -35,7 +35,7 @@
             width: 100%;
             text-align: center;
             margin-top: 7%;
-            letter-spacing:5px;
+            letter-spacing: 5px;
         }
         
         #bg {
@@ -51,27 +51,35 @@
             background-size: cover;
             -webkit-filter: blur(5px);
         }
-        
     </style>
 </head>
 
 <body>
     <div id="bg"></div>
-        <h1><span id="hrMin"></span><span id="sec"></span></h1>
-        <h2>Good Morning, HSTAT SEP</h2>
+    <h1><span id="hrMin"></span><span id="sec"></span></h1>
+    <h2>Good Morning, HSTAT SEP</h2>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#sec').click(function() {
+                $('#sec').css('display', 'none');
+            });
+        });
+    </script>
     <script>
         function getTime() {
             var rawTime = new Date().toString();
-            hrMin = rawTime.substring(16,21);
-            sec = rawTime.substring(22,24);
-            
-            tensPlace = hrMin[0] == 1? "1" : "" ;
-            hrMin = tensPlace + hrMin.substring(1,5);
-            
+            hrMin = rawTime.substring(16, 21);
+            sec = rawTime.substring(22, 24);
+
+            tensPlace = hrMin[0] == 1 ? "1" : "";
+            hrMin = tensPlace + hrMin.substring(1, 5);
+
             document.getElementById("hrMin").innerHTML = hrMin;
             document.getElementById("sec").innerHTML = sec;
-            
+
         }
 
         getTime();
