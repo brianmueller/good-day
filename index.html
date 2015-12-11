@@ -47,9 +47,9 @@
             min-width: 110%;
             min-height: 110%;
             z-index: -1;
-            background: linear-gradient( rgba(0, 0, 50, 0.5), rgba(0, 0, 50, 0.5)), url('hstat.jpg');
+            background: linear-gradient( rgba(0, 0, 100, 0.4), rgba(0, 0, 100, 0.4)), url('hstat.jpg');
             background-size: cover;
-            -webkit-filter: blur(5px);
+            -webkit-filter: hue-rotate(90deg) blur(5px);
         }
     </style>
 </head>
@@ -74,14 +74,14 @@
     <script>
         function getTime() {
             var rawTime = new Date().toString();
-            rawTime = "Fri Dec 11 2015 07:57:01 GMT-0500 (EST)"
-            
+            // rawTime = "Fri Dec 11 2015 07:57:01 GMT-0500 (EST)"
+
             hr = rawTime.substring(16, 18);
-            
+
             hr = parseInt(hr);
-            var morningAfternoon = hr<12 ? "morning": "afternoon";
-            hr = (hr%12).toString();
-            
+            var morningAfternoon = hr < 12 ? "morning" : "afternoon";
+            hr = (hr % 12).toString();
+
             min = rawTime.substring(19, 21);
             sec = rawTime.substring(22, 24);
 
@@ -91,9 +91,32 @@
 
         }
 
-        getTime();
+        var degrees = 0;
+        function rotateColor() {
+            
+            // var filters = ["hue-rotate(99deg)", "hue-rotate(22deg)", "hue-rotate(144deg)", "hue-rotate(270deg)"];
+            // var filter = filters.shift();
+            // filters.push(filter);
+            
+            $("#bg").css({
+                '-webkit-filter': "hue-rotate(" + degrees + "deg) blur(5px)"
+                
+                
+                // -webkit-filter: hue-rotate(90deg) blur(5px);
+                
+                
+            });
+        }
 
-        setInterval(getTime, 1000);
+        function refresh() {
+            getTime();
+            degrees += 5;
+            rotateColor();
+            console.log(degrees);
+        }
+
+        refresh();
+        setInterval(refresh, 1000);
     </script>
 </body>
 
