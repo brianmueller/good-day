@@ -16,7 +16,7 @@
             margin: auto;
             width: 100%;
             text-align: center;
-            margin-top: 10%;
+            margin-top: 12%;
         }
         
         #hrMin {
@@ -63,15 +63,18 @@
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#sec').click(function() {
-                $('#sec').css('display', 'none');
+            $('h1').click(function() {
+                if ($('#sec').css('display') == 'none')
+                    $('#sec').css('display', 'inline');
+                else
+                    $('#sec').css('display', 'none');
             });
         });
     </script>
     <script>
         function getTime() {
             var rawTime = new Date().toString();
-            // rawTime = "Fri Dec 11 2015 10:47:01 GMT-0500 (EST)"
+            rawTime = "Fri Dec 11 2015 07:57:01 GMT-0500 (EST)"
             
             hr = rawTime.substring(16, 18);
             
