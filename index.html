@@ -57,7 +57,7 @@
 <body>
     <div id="bg"></div>
     <h1><span id="hrMin"></span><span id="sec"></span></h1>
-    <h2>Good Morning, HSTAT SEP</h2>
+    <h2>Good <span id="morningAfternoon"></span>, HSTAT SEP</h2>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -71,14 +71,20 @@
     <script>
         function getTime() {
             var rawTime = new Date().toString();
-            hrMin = rawTime.substring(16, 21);
+            // rawTime = "Fri Dec 11 2015 10:47:01 GMT-0500 (EST)"
+            
+            hr = rawTime.substring(16, 18);
+            
+            hr = parseInt(hr);
+            var morningAfternoon = hr<12 ? "morning": "afternoon";
+            hr = (hr%12).toString();
+            
+            min = rawTime.substring(19, 21);
             sec = rawTime.substring(22, 24);
 
-            tensPlace = hrMin[0] == 1 ? "1" : "";
-            hrMin = tensPlace + hrMin.substring(1, 5);
-
-            document.getElementById("hrMin").innerHTML = hrMin;
+            document.getElementById("hrMin").innerHTML = hr + ":" + min;
             document.getElementById("sec").innerHTML = sec;
+            document.getElementById("morningAfternoon").innerHTML = morningAfternoon;
 
         }
 
