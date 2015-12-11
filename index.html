@@ -13,20 +13,20 @@
         
         h1 {
             font-family: 'Roboto', sans-serif;
-            font-size: 300px;
+            font-size: 280px;
             margin: auto;
             width: 100%;
             text-align: center;
-            margin-top: 5%;
+            margin-top: 10%;
         }
         
         h2 {
             font-family: 'Poiret One', cursive;
-            font-size: 85px;
+            font-size: 70px;
             margin: auto;
             width: 100%;
             text-align: center;
-            margin-top: 5%;
+            margin-top: 7%;
             letter-spacing:5px;
         }
         
@@ -54,10 +54,14 @@
 
     <script>
         function getTime() {
-            var time = new Date();
-            // time = time.toString().substring(17, 21);
-            time = time.toString().substring(17,21);
-            document.getElementById("time").innerHTML = time;
+            var rawTime = new Date();
+            time = rawTime.toString().substring(16,21);
+            
+            tensPlace = time[0] == 1? "1" : "" ;
+            clock = tensPlace + time.substring(1,5);
+            
+            document.getElementById("time").innerHTML = clock;
+            
         }
 
         getTime();
