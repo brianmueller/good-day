@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Good Morning</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900,100,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        * {
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 300px;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            margin-top: 5%;
+        }
+        
+        h2 {
+            font-family: 'Poiret One', cursive;
+            font-size: 85px;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            margin-top: 5%;
+            letter-spacing:5px;
+        }
+        
+        #bg {
+            height: 100%;
+            width: 100%;
+            /*position: absolute;*/
+            /*top: -15px;*/
+            /*left: -15px;*/
+            position: fixed;
+            top: -15px;
+            left: -15px;
+            /* Preserve aspet ratio */
+            min-width: 110%;
+            min-height: 110%;
+            z-index: -1;
+            background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('hstat.jpg');
+            background-size: cover;
+            -webkit-filter: blur(5px);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="bg"></div>
+    <div id="wrapper">
+        <h1 id="time"></h1>
+        <h2>Good Morning, HSTAT SEP</h2>
+    </div>
+
+    <script>
+        function getTime() {
+            var time = new Date();
+            // time = time.toString().substring(17, 21);
+            time = time.toString().substring(17,21);
+            document.getElementById("time").innerHTML = time;
+        }
+
+        getTime();
+
+        setInterval(getTime, 1000);
+    </script>
+</body>
+
+</html>
