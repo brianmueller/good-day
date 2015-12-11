@@ -13,11 +13,19 @@
         
         h1 {
             font-family: 'Roboto', sans-serif;
-            font-size: 280px;
             margin: auto;
             width: 100%;
             text-align: center;
             margin-top: 10%;
+        }
+        
+        #hrMin {
+            font-size: 280px;
+        }
+        
+        #sec {
+            font-size: 50px;
+            font-weight: 300;
         }
         
         h2 {
@@ -49,18 +57,20 @@
 
 <body>
     <div id="bg"></div>
-        <h1 id="time"></h1>
+        <h1><span id="hrMin"></span><span id="sec"></span></h1>
         <h2>Good Morning, HSTAT SEP</h2>
 
     <script>
         function getTime() {
-            var rawTime = new Date();
-            time = rawTime.toString().substring(16,21);
+            var rawTime = new Date().toString();
+            hrMin = rawTime.substring(16,21);
+            sec = rawTime.substring(22,24);
             
-            tensPlace = time[0] == 1? "1" : "" ;
-            clock = tensPlace + time.substring(1,5);
+            tensPlace = hrMin[0] == 1? "1" : "" ;
+            clock = tensPlace + hrMin.substring(1,5);
             
-            document.getElementById("time").innerHTML = clock;
+            document.getElementById("hrMin").innerHTML = clock;
+            document.getElementById("sec").innerHTML = sec;
             
         }
 
