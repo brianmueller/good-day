@@ -51,13 +51,17 @@
             background-size: cover;
             -webkit-filter: hue-rotate(90deg) blur(5px);
         }
+        
+        .ib {
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
     <div id="bg"></div>
     <h1><span id="hrMin"></span><span id="sec"></span></h1>
-    <h2>Good <span id="morningAfternoon"></span>, HSTAT SEP</h2>
+    <h2><span id="morningAfternoon" class="ib"></span>, <span class="ib">HSTAT SEP</span></h2>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -86,7 +90,7 @@
 
             hr = rawTime.substring(16, 18);
             hr = parseInt(hr);
-            var morningAfternoon = hr < 12 ? "morning" : "afternoon";
+            var morningAfternoon = hr < 12 ? "Good morning" : "Good afternoon";
             hr = (hr % 12).toString();
 
             min = rawTime.substring(19, 21);
