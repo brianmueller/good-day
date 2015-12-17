@@ -86,12 +86,12 @@
 
         function getTime() {
             var rawTime = new Date().toString();
-            // rawTime = "Fri Dec 11 2015 07:57:01 GMT-0500 (EST)"
+            // rawTime = "Fri Dec 11 2015 12:57:01 GMT-0500 (EST)"
 
             hr = rawTime.substring(16, 18);
             hr = parseInt(hr);
             var morningAfternoon = hr < 12 ? "Good morning" : "Good afternoon";
-            hr = (hr % 12).toString();
+            hr = (hr > 12? (hr % 12) : hr).toString();
 
             min = rawTime.substring(19, 21);
 
