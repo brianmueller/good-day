@@ -39,15 +39,13 @@
         }
         
         #bg {
-            height: 150%;
-            width: 150%;
+            height: 110%;
+            width: 110%;
             position: fixed;
-            top: -25%;
-            left: -25%;
-            /*min-width: 110%;*/
-            /*min-height: 110%;*/
+            top: -5%;
+            left: -5%;
             z-index: -1;
-            /*background: linear-gradient( rgba(0, 0, 100, 0.4), rgba(0, 0, 100, 0.4)), url('wires.jpg');*/
+            background: linear-gradient( rgba(0, 0, 100, 0.4), rgba(0, 0, 100, 0.4)), url('wires.jpg');
             background-size: cover;
             -webkit-filter: hue-rotate(90deg) blur(5px);
         }
@@ -56,13 +54,23 @@
             display: inline-block;
         }
         
+        @font-face {
+            font-family: 'starwars';
+            /*a name to be used later*/
+            src: url('starwars.ttf');
+            /*URL to font*/
+        }
+        
+        #hstatsep{
+            font-family: 'starwars';
+        }
     </style>
 </head>
 
 <body>
     <div id="bg"></div>
     <h1><span id="hrMin"></span><span id="sec"></span></h1>
-    <h2><span id="morningAfternoon" class="ib"></span>, <span class="ib" id="hstatsep">HSTAT SEP</span></h2>
+    <h2><span id="morningAfternoon" class="ib">May the force be with you</span>, <span class="ib" id="hstatsep">HSTAT SEP</span></h2>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -77,8 +85,9 @@
         });
     </script>
     <script>
-        bgFiles = ["arduino", "auditorium", "code", "collab", "computers", "hstat", "keyboard", "lab", "makey", "robot", "sb", "showcase", "wires", "working", "yearbook"];
+        bgFiles = ["starwars", "lightsabers", "falcon"];
         bgFile = bgFiles[Math.floor(Math.random() * bgFiles.length)];
+        // bgFile = "lightsabers";
         $("#bg").css({
             "background": "linear-gradient( rgba(0, 0, 100, 0.4), rgba(0, 0, 100, 0.4)), url('images/" + bgFile + ".jpg')",
             'background-size': 'cover'
@@ -90,7 +99,6 @@
 
             hr = rawTime.substring(16, 18);
             hr = parseInt(hr);
-            var morningAfternoon = hr < 12 ? "Good morning" : "Good afternoon";
             hr = (hr > 12 ? (hr % 12) : hr).toString();
 
             min = rawTime.substring(19, 21);
@@ -99,7 +107,6 @@
 
             document.getElementById("hrMin").innerHTML = hr + ":" + min;
             document.getElementById("sec").innerHTML = sec;
-            document.getElementById("morningAfternoon").innerHTML = morningAfternoon;
         }
 
         var degrees = 0;
