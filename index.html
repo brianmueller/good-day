@@ -55,13 +55,24 @@
         .ib {
             display: inline-block;
         }
+        
+        @font-face {
+            font-family: 'starwars';
+            /*a name to be used later*/
+            src: url('starwars.ttf');
+            /*URL to font*/
+        }
+        
+        #hstatsep{
+            font-family: 'starwars';
+        }
     </style>
 </head>
 
 <body>
     <div id="bg"></div>
     <h1><span id="hrMin"></span><span id="sec"></span></h1>
-    <h2><span id="morningAfternoon" class="ib">May the force be with you</span>, <span class="ib">HSTAT SEP</span></h2>
+    <h2><span id="morningAfternoon" class="ib">May the force be with you</span>, <span class="ib" id="hstatsep">HSTAT SEP</span></h2>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -91,7 +102,7 @@
             hr = rawTime.substring(16, 18);
             hr = parseInt(hr);
             var morningAfternoon = hr < 12 ? "Good morning" : "Good afternoon";
-            hr = (hr > 12? (hr % 12) : hr).toString();
+            hr = (hr > 12 ? (hr % 12) : hr).toString();
 
             min = rawTime.substring(19, 21);
 
