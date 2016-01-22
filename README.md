@@ -1,2 +1,2 @@
 ### To-Do:
-* Make greeting clickable --> customizable
+* Make greeting clickable --> custom text
