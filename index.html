@@ -28,14 +28,20 @@
             font-weight: 300;
         }
         
-        h2 {
+        input {
             font-family: 'Poiret One', cursive;
             font-size: 70px;
             margin: auto;
             width: 100%;
             text-align: center;
-            margin-top: 7%;
+            margin-top: 2%;
             letter-spacing: 5px;
+            background: transparent;
+            border: none;
+        }
+        
+        input:focus {
+            outline-width: 0;
         }
         
         #bg {
@@ -51,31 +57,19 @@
             background-size: cover;
             -webkit-filter: hue-rotate(90deg) blur(5px);
         }
-        
-        .ib {
-            display: inline-block;
-        }
-        
     </style>
 </head>
 
 <body>
     <div id="bg"></div>
+
     <h1><span id="hrMin"></span><span id="sec"></span></h1>
-    <h2><span id="morningAfternoon" class="ib"></span>, <span class="ib" id="hstatsep">HSTAT SEP</span></h2>
+
+    <input id="morningAfternoon">
+    <input value="HSTAT SEP">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('h1').click(function() {
-                if ($('#sec').css('display') == 'none')
-                    $('#sec').css('display', 'inline');
-                else
-                    $('#sec').css('display', 'none');
-            });
-        });
-    </script>
     <script>
         bgFiles = ["arduino", "auditorium", "code", "collab", "computers", "hstat", "keyboard", "lab", "makey", "robot", "sb", "showcase", "wires", "working", "yearbook"];
         bgFile = bgFiles[Math.floor(Math.random() * bgFiles.length)];
@@ -84,14 +78,17 @@
             'background-size': 'cover'
         });
 
+        var morningAfternoon;
+
         function getTime() {
             var rawTime = new Date().toString();
             // rawTime = "Fri Dec 11 2015 12:57:01 GMT-0500 (EST)"
 
             hr = rawTime.substring(16, 18);
             hr = parseInt(hr);
-            var morningAfternoon = hr < 12 ? "Good morning" : "Good afternoon";
+            morningAfternoon = hr < 12 ? "Good morning," : "Good afternoon,";
             hr = (hr > 12 ? (hr % 12) : hr).toString();
+            hr = (hr == 0 ? hr = 12 : hr).toString();
 
             min = rawTime.substring(19, 21);
 
@@ -99,7 +96,11 @@
 
             document.getElementById("hrMin").innerHTML = hr + ":" + min;
             document.getElementById("sec").innerHTML = sec;
-            document.getElementById("morningAfternoon").innerHTML = morningAfternoon;
+        }
+
+        function setPhrase() {
+            $('#morningAfternoon').val(morningAfternoon);
+            return "done";
         }
 
         var degrees = 0;
@@ -114,11 +115,37 @@
         function refresh() {
             getTime();
             rotateColor();
-            console.log(degrees);
+            //console.log(degrees);
         }
 
         refresh();
         setInterval(refresh, 1000);
+
+        $(document).ready(function() {
+            setPhrase();
+            $('h1').click(function() {
+                if ($('#sec').css('display') == 'none')
+                    $('#sec').css('display', 'inline');
+                else
+                    $('#sec').css('display', 'none');
+            });
+        });
+
+        var text;
+
+        $('input').focus(
+            function() {
+                text = $(this).val();
+                $(this).val("");
+            });
+
+        $('input').focusout(
+            function() {
+                if ($(this).val() != "") {
+                    text = $(this).val();
+                }
+                $(this).val(text);
+            });
     </script>
 </body>
 
