@@ -87,7 +87,7 @@
             hr = rawTime.substring(16, 18);
             hr = parseInt(hr);
             morningAfternoon = hr < 12 ? "Good morning," : "Good afternoon,";
-            hr = (hr > 12 ? (hr % 12) : hr).toString();
+            hr = hr % 12;
             hr = (hr == 0 ? hr = 12 : hr).toString();
 
             min = rawTime.substring(19, 21);
